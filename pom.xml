@@ -85,6 +85,43 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut.data/micronaut-data-hibernate-jpa -->
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-hibernate-jpa</artifactId>
+            <version>4.10.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut.data/micronaut-data-processor -->
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-processor</artifactId>
+            <version>4.10.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut.sql/micronaut-jdbc -->
+        <dependency>
+            <groupId>io.micronaut.sql</groupId>
+            <artifactId>micronaut-jdbc</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut.data/micronaut-data-runtime -->
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-runtime</artifactId>
+            <version>4.10.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.transaction/jakarta.transaction-api -->
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut/micronaut-runtime -->
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-runtime</artifactId>
+            <version>4.7.10</version>
+        </dependency>
+
 
 
     </dependencies>
@@ -124,6 +161,16 @@
                                     <artifactId>micronaut-inject</artifactId>
                                 </exclusion>
                             </exclusions>
+                        </path>
+                        <path>
+                            <groupId>io.micronaut.data</groupId>
+                            <artifactId>micronaut-data-processor</artifactId>
+                            <version>4.10.5</version>
+                        </path>
+                        <path>
+                            <groupId>io.micronaut</groupId>
+                            <artifactId>micronaut-inject-java</artifactId>
+                            <version>${micronaut.version}</version>
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
