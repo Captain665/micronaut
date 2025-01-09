@@ -1,6 +1,9 @@
 package v1.models;
 
 import jakarta.persistence.*;
+import io.micronaut.data.annotation.Id;
+
+
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

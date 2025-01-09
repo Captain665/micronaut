@@ -1,10 +1,13 @@
 package v1.resources;
 
+import io.micronaut.core.annotation.Nullable;
+import io.micronaut.serde.annotation.Serdeable;
 import v1.models.CompanyModel;
 
 import java.math.BigInteger;
 import java.util.List;
 
+@Serdeable
 public class CompanyResponseResource {
 	public Long id;
 	public String name;
@@ -15,6 +18,7 @@ public class CompanyResponseResource {
 	public String gstNo;
 	public String category;
 	public BigInteger numberOfEmployee;
+	@Nullable
 	public List<EmployeeResponseResource> employeeDetails;
 
 	public CompanyResponseResource() {

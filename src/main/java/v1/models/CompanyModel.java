@@ -1,11 +1,10 @@
 package v1.models;
 
+import io.micronaut.data.annotation.MappedEntity;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "company_details")
+
+@MappedEntity("company_details")
 public class CompanyModel extends BaseModel {
 	@Column(name = "name")
 	private String name;

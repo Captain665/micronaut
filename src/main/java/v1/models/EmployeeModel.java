@@ -2,12 +2,13 @@ package v1.models;
 
 import com.example.commons.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.micronaut.data.annotation.MappedEntity;
 import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "employee_details")
+
+@MappedEntity("employee_details")
 public class EmployeeModel extends BaseModel {
 	@Column(name = "full_name")
 	private String fullName;

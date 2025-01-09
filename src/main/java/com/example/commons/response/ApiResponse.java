@@ -1,13 +1,18 @@
 package com.example.commons.response;
 
 import com.example.commons.enums.Status;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.micronaut.core.annotation.Nullable;
+import io.micronaut.serde.annotation.Serdeable;
 
-@JsonPropertyOrder({"status", "message", "result", "error"})
-public class ApiResponse {
+import java.io.Serializable;
+
+@Serdeable
+public class ApiResponse implements Serializable {
 	public Status status;
 	public String message;
+	@Nullable
 	public Object result;
+	@Nullable
 	public Object error;
 
 	public ApiResponse() {

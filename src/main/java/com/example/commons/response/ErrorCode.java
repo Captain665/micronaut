@@ -1,16 +1,19 @@
 package com.example.commons.response;
 
+import io.micronaut.serde.annotation.Serdeable;
+
+@Serdeable
 public class ErrorCode {
 	public String traceId;
-	public String companyId;
+	public String code;
 	public String error;
 
 	public ErrorCode() {
 	}
 
-	public ErrorCode(String traceId, String companyId, String error) {
+	public ErrorCode(String traceId, String code, String error) {
 		this.traceId = traceId;
-		this.companyId = companyId;
+		this.code = code;
 		this.error = error;
 	}
 
@@ -22,12 +25,12 @@ public class ErrorCode {
 		this.traceId = traceId;
 	}
 
-	public String getCompanyId() {
-		return companyId;
+	public String getCode() {
+		return code;
 	}
 
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getError() {

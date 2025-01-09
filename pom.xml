@@ -37,11 +37,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.serde</groupId>
-            <artifactId>micronaut-serde-jackson</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
@@ -71,25 +66,13 @@
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-jdbc</artifactId>
             <version>4.10.5</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.2.0</version>
+            <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.4</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.micronaut.data/micronaut-data-hibernate-jpa -->
-        <dependency>
-            <groupId>io.micronaut.data</groupId>
-            <artifactId>micronaut-data-hibernate-jpa</artifactId>
-            <version>4.10.5</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.micronaut.data/micronaut-data-processor -->
         <dependency>
@@ -109,17 +92,35 @@
             <artifactId>micronaut-data-runtime</artifactId>
             <version>4.10.5</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/jakarta.transaction/jakarta.transaction-api -->
-        <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
-            <version>2.0.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.micronaut/micronaut-runtime -->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-runtime</artifactId>
             <version>4.7.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.0</version> <!-- Use the latest version -->
+            <scope>runtime</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut.configuration/micronaut-jdbc-hikari -->
+        <dependency>
+            <groupId>io.micronaut.configuration</groupId>
+            <artifactId>micronaut-jdbc-hikari</artifactId>
+            <version>2.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.sql</groupId>
+            <artifactId>micronaut-jdbc-hikari</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.micronaut.serde/micronaut-serde-jackson -->
+        <dependency>
+            <groupId>io.micronaut.serde</groupId>
+            <artifactId>micronaut-serde-jackson</artifactId>
+            <version>2.13.0</version>
+            <scope>compile</scope>
         </dependency>
 
 

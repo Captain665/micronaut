@@ -1,10 +1,10 @@
 package v1.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.micronaut.data.annotation.MappedEntity;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "company_assets")
+@MappedEntity("company_assets")
 public class AssetModel extends BaseModel {
 	@Column(name = "type")
 	private String type;

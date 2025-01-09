@@ -1,0 +1,35 @@
+micronaut:
+  server:
+    port: 9000
+  application:
+    name: demo
+  data:
+    jdbc:
+      enabled: true
+  transactions:
+    enabled: true
+
+
+jackson:
+  bean-introspection-module: true
+
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5433/demo_db
+    driverClassName: org.postgresql.Driver
+    db-type: postgres
+    username: 'postgres'
+    password: 'root'
+    dialect: POSTGRES
+    schema-generate: NONE
+
+logging:
+  level:
+    io:
+      micronaut:
+        data: DEBUG
+    io.micronaut.context: TRACE
+
+
+
+

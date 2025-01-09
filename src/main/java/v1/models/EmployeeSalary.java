@@ -1,12 +1,12 @@
 package v1.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.micronaut.data.annotation.MappedEntity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "employee_salary")
+@MappedEntity("employee_salary")
 public class EmployeeSalary extends BaseModel {
 	@Column(name = "base_amount")
 	private BigDecimal baseAmount;

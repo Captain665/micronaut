@@ -1,14 +1,12 @@
-package v1.repositorys;
+package v1.repositories;
 
-import io.micronaut.data.annotation.Query;
 import io.micronaut.data.annotation.Repository;
+import io.micronaut.data.jdbc.annotation.JdbcRepository;
+import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.repository.CrudRepository;
 import v1.models.CompanyModel;
 
-import java.util.Optional;
 
-@Repository
+@JdbcRepository(dialect = Dialect.POSTGRES)
 public interface CompanyRepository extends CrudRepository<CompanyModel, Long> {
-//	@Query("SELECT c FROM CompanyModel c WHERE c.id = :id")
-	Optional<CompanyModel> findById(Long id);
 }
