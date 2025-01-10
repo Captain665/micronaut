@@ -3,11 +3,12 @@ package v1.models;
 import com.example.commons.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
 import java.util.List;
 
-
+@Serdeable
 @MappedEntity("employee_details")
 public class EmployeeModel extends BaseModel {
 	@Column(name = "full_name")
@@ -17,6 +18,7 @@ public class EmployeeModel extends BaseModel {
 	@Column(name = "email_id")
 	private String emailId;
 	@Column(name = "gender")
+	@Enumerated(EnumType.ORDINAL)
 	private Gender gender;
 	@Column(name = "joining_date")
 	private String joiningDate;

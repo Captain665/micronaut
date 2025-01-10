@@ -1,10 +1,12 @@
 package v1.resources;
 
 import com.example.commons.enums.Gender;
+import io.micronaut.serde.annotation.Serdeable;
 import v1.models.EmployeeModel;
 
 import java.util.List;
 
+@Serdeable
 public class EmployeeResponseResource {
 	public Long id;
 	public String fullName;

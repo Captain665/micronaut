@@ -1,7 +1,9 @@
 package v1.resources;
 
+import io.micronaut.serde.annotation.Serdeable;
 import v1.models.AssetModel;
 
+@Serdeable
 public class AssetResource {
 	public Long id;
 	public String type;

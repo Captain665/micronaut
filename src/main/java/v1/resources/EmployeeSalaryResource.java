@@ -1,9 +1,11 @@
 package v1.resources;
 
+import io.micronaut.serde.annotation.Serdeable;
 import v1.models.EmployeeSalary;
 
 import java.math.BigDecimal;
 
+@Serdeable
 public class EmployeeSalaryResource {
 	public Long id;
 	public BigDecimal baseAmount;
