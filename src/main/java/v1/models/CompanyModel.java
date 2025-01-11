@@ -1,10 +1,12 @@
 package v1.models;
 
 import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.Column;
 
 
 @MappedEntity("company_details")
+@Serdeable
 public class CompanyModel extends BaseModel {
 	@Column(name = "name")
 	private String name;

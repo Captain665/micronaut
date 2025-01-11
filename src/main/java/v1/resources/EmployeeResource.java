@@ -1,6 +1,7 @@
 package v1.resources;
 
 import com.example.commons.enums.Gender;
+import io.micronaut.serde.annotation.Serdeable;
 import v1.models.AssetModel;
 import v1.models.EmployeeModel;
 import v1.models.EmployeeSalary;
@@ -8,6 +9,7 @@ import v1.models.EmployeeSalary;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Serdeable
 public class EmployeeResource {
 	public Long id;
 	public LocalDateTime createdAt;
