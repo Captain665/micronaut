@@ -23,13 +23,9 @@ datasources:
     dialect: POSTGRES
     schema-generate: NONE
 
+
 logging:
   level:
-    io:
-      micronaut:
-        data: DEBUG
-    io.micronaut.context: TRACE
-
-
-
-
+    io.micronaut.data.query: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

@@ -3,6 +3,7 @@ package v1.models;
 import com.example.commons.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.data.annotation.Relation;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
@@ -30,10 +31,10 @@ public class EmployeeModel extends BaseModel {
 	private String location;
 	@ManyToOne(targetEntity = CompanyModel.class, fetch = FetchType.EAGER, optional = false)
 	private CompanyModel company;
-	@OneToMany(targetEntity = AssetModel.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
+	@OneToMany(targetEntity = AssetModel.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee", orphanRemoval = true)
 	@JsonManagedReference
 	private List<AssetModel> asset;
-	@OneToOne(targetEntity = EmployeeSalary.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
+	@OneToOne(targetEntity = EmployeeSalary.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee", orphanRemoval = true)
 	@JsonManagedReference
 	private EmployeeSalary salary;
 	@Column(name = "active")
@@ -175,7 +176,7 @@ public class EmployeeModel extends BaseModel {
 				", location='" + location + '\'' +
 //				", asset=" + asset +
 //				", salary=" + salary +
-//				", active=" + active +
+				", active=" + active +
 				", newUser=" + newUser +
 				", id=" + id +
 				'}';

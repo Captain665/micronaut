@@ -92,6 +92,7 @@ public class AssetModel extends BaseModel {
 				", description='" + description + '\'' +
 				", price='" + price + '\'' +
 				", employee=" + employee +
+				", id=" + id +
 				'}';
 	}
 }

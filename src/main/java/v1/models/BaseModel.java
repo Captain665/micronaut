@@ -1,19 +1,20 @@
 package v1.models;
 
+import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import io.micronaut.data.annotation.Id;
-
 
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
+@Serdeable
 public abstract class BaseModel implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
 	public Long id;
 	@Column(name = "created_at", updatable = false)
 	public LocalDateTime createdAt;
