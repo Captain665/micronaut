@@ -21,15 +21,11 @@ datasources:
     username: 'postgres'
     password: 'root'
     dialect: POSTGRES
-    schema-generate: NONE
+    schema-generate: CREATE
+
 
 logging:
   level:
-    io:
-      micronaut:
-        data: DEBUG
-    io.micronaut.context: TRACE
-
-
-
-
+    io.micronaut.data.query: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

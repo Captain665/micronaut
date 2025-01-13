@@ -6,11 +6,25 @@ import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Serdeable
-@MappedEntity("employee_details")
-public class EmployeeModel extends BaseModel {
+@MappedEntity("employee_details123")
+@Entity
+public class EmployeeModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	public Long id;
+	@Column(name = "created_at")
+	public LocalDateTime createdAt;
+	@Column(name = "created_by")
+	public String createdBy;
+	@Column(name = "updated_at")
+	public LocalDateTime updatedAt;
+	@Column(name = "updated_by")
+	public String updatedBy;
 	@Column(name = "full_name")
 	private String fullName;
 	@Column(name = "mobile")
@@ -30,10 +44,10 @@ public class EmployeeModel extends BaseModel {
 	private String location;
 	@ManyToOne(targetEntity = CompanyModel.class, fetch = FetchType.EAGER, optional = false)
 	private CompanyModel company;
-	@OneToMany(targetEntity = AssetModel.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
+	@OneToMany(targetEntity = AssetModel.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee", orphanRemoval = true)
 	@JsonManagedReference
 	private List<AssetModel> asset;
-	@OneToOne(targetEntity = EmployeeSalary.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
+	@OneToOne(targetEntity = EmployeeSalary.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee", orphanRemoval = true)
 	@JsonManagedReference
 	private EmployeeSalary salary;
 	@Column(name = "active")
@@ -56,6 +70,39 @@ public class EmployeeModel extends BaseModel {
 		this.company = company;
 		this.asset = asset;
 		this.salary = salary;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getFullName() {
@@ -162,6 +209,15 @@ public class EmployeeModel extends BaseModel {
 		this.newUser = newUser;
 	}
 
+	@PrePersist
+	@PreUpdate
+	public void setCreatedAt() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
+		this.createdBy = "Customer";
+		this.updatedBy = "Customer";
+	}
+
 	@Override
 	public String toString() {
 		return "EmployeeModel{" +
@@ -175,7 +231,7 @@ public class EmployeeModel extends BaseModel {
 				", location='" + location + '\'' +
 //				", asset=" + asset +
 //				", salary=" + salary +
-//				", active=" + active +
+				", active=" + active +
 				", newUser=" + newUser +
 				", id=" + id +
 				'}';

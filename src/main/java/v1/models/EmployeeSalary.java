@@ -6,10 +6,24 @@ import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-@MappedEntity("employee_salary")
+@MappedEntity("employee_salary123")
 @Serdeable
-public class EmployeeSalary extends BaseModel {
+@Entity
+public class EmployeeSalary {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	public Long id;
+	@Column(name = "created_at", updatable = false)
+	public LocalDateTime createdAt;
+	@Column(name = "created_by")
+	public String createdBy;
+	@Column(name = "updated_at")
+	public LocalDateTime updatedAt;
+	@Column(name = "updated_by")
+	public String updatedBy;
 	@Column(name = "base_amount")
 	private BigDecimal baseAmount;
 	@Column(name = "hra")
@@ -37,6 +51,38 @@ public class EmployeeSalary extends BaseModel {
 		this.medical = medical;
 		this.tax = tax;
 		this.totalAmount = totalAmount;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public BigDecimal getBaseAmount() {
@@ -94,6 +140,17 @@ public class EmployeeSalary extends BaseModel {
 	public void setEmployee(EmployeeModel employee) {
 		this.employee = employee;
 	}
+
+
+	@PrePersist
+	@PreUpdate
+	public void setCreatedAt() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
+		this.createdBy = "Customer";
+		this.updatedBy = "Customer";
+	}
+
 
 	@Override
 	public String toString() {

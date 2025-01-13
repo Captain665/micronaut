@@ -9,5 +9,4 @@ import java.util.List;
 
 @JdbcRepository(dialect = Dialect.POSTGRES)
 public interface AssetRepository extends CrudRepository<AssetModel, Long> {
-	List<AssetModel> findByEmployeeId(Long employeeId);
 }
