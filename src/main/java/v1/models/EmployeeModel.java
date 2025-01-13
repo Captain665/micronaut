@@ -3,15 +3,28 @@ package v1.models;
 import com.example.commons.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.micronaut.data.annotation.MappedEntity;
-import io.micronaut.data.annotation.Relation;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Serdeable
-@MappedEntity("employee_details")
-public class EmployeeModel extends BaseModel {
+@MappedEntity("employee_details123")
+@Entity
+public class EmployeeModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	public Long id;
+	@Column(name = "created_at")
+	public LocalDateTime createdAt;
+	@Column(name = "created_by")
+	public String createdBy;
+	@Column(name = "updated_at")
+	public LocalDateTime updatedAt;
+	@Column(name = "updated_by")
+	public String updatedBy;
 	@Column(name = "full_name")
 	private String fullName;
 	@Column(name = "mobile")
@@ -57,6 +70,39 @@ public class EmployeeModel extends BaseModel {
 		this.company = company;
 		this.asset = asset;
 		this.salary = salary;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getFullName() {
@@ -161,6 +207,15 @@ public class EmployeeModel extends BaseModel {
 
 	public void setNewUser(Boolean newUser) {
 		this.newUser = newUser;
+	}
+
+	@PrePersist
+	@PreUpdate
+	public void setCreatedAt() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
+		this.createdBy = "Customer";
+		this.updatedBy = "Customer";
 	}
 
 	@Override

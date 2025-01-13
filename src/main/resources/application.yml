@@ -21,7 +21,7 @@ datasources:
     username: 'postgres'
     password: 'root'
     dialect: POSTGRES
-    schema-generate: NONE
+    schema-generate: CREATE
 
 
 logging:

@@ -2,12 +2,27 @@ package v1.models;
 
 import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.serde.annotation.Serdeable;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 
-@MappedEntity("company_details")
+@MappedEntity("company_details123")
 @Serdeable
-public class CompanyModel extends BaseModel {
+@Entity
+public class CompanyModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	public Long id;
+	@Column(name = "created_at")
+	public LocalDateTime createdAt;
+	@Column(name = "created_by")
+	public String createdBy;
+	@Column(name = "updated_at")
+	public LocalDateTime updatedAt;
+	@Column(name = "updated_by")
+	public String updatedBy;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "address")
@@ -36,6 +51,38 @@ public class CompanyModel extends BaseModel {
 		this.country = country;
 		this.gstNo = gstNo;
 		this.category = category;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getName() {
@@ -93,4 +140,15 @@ public class CompanyModel extends BaseModel {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+
+	@PrePersist
+	@PreUpdate
+	public void setCreatedAt() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
+		this.createdBy = "Customer";
+		this.updatedBy = "Customer";
+	}
+
 }

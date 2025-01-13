@@ -5,9 +5,24 @@ import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
-@MappedEntity("company_assets")
+import java.time.LocalDateTime;
+
+@MappedEntity("company_assets123")
 @Serdeable
-public class AssetModel extends BaseModel {
+@Entity
+public class AssetModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	public Long id;
+	@Column(name = "created_at", updatable = false)
+	public LocalDateTime createdAt;
+	@Column(name = "created_by")
+	public String createdBy;
+	@Column(name = "updated_at")
+	public LocalDateTime updatedAt;
+	@Column(name = "updated_by")
+	public String updatedBy;
 	@Column(name = "type")
 	private String type;
 	@Column(name = "name")
@@ -33,6 +48,38 @@ public class AssetModel extends BaseModel {
 		this.description = description;
 		this.price = price;
 		this.employee = employee;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getName() {
@@ -82,6 +129,16 @@ public class AssetModel extends BaseModel {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@PrePersist
+	@PreUpdate
+	public void setCreatedAt() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
+		this.createdBy = "Customer";
+		this.updatedBy = "Customer";
+	}
+
 
 	@Override
 	public String toString() {

@@ -3,6 +3,7 @@ package v1.resourceHandlers;
 import io.micronaut.transaction.annotation.Transactional;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import jakarta.persistence.EntityManager;
 import v1.models.CompanyModel;
 import v1.models.EmployeeModel;
 import v1.models.EmployeeSalary;
@@ -21,13 +22,11 @@ public class EmployeeResourceHandler {
 	private final EmployeeRepository repository;
 	private final AssetRepository assetRepository;
 
-	@Inject
 	public EmployeeResourceHandler(CompanyRepository companyRepository, EmployeeRepository repository, AssetRepository assetRepository) {
 		this.companyRepository = companyRepository;
 		this.repository = repository;
 		this.assetRepository = assetRepository;
 	}
-
 
 	public EmployeeResource saveEmployeeDetails(EmployeeResource resource) {
 
@@ -47,9 +46,6 @@ public class EmployeeResourceHandler {
 					.setSalary(calculateEmployeeSalary(resource.getSalaryStructure()))
 					.build();
 			EmployeeModel employeeModel1 = repositoryConnectionForSaveData(employeeModel);
-			System.out.println("employeeModel  is " + employeeModel1);
-			System.out.println("getAsset model is " + employeeModel1.getAsset());
-			System.out.println("getSalary model is " + employeeModel1.getSalary());
 			return new EmployeeResource(employeeModel1);
 		}
 		return null;
@@ -81,17 +77,15 @@ public class EmployeeResourceHandler {
 			model.getAsset().forEach(assetModel -> assetModel.setEmployee(model));
 			model.setActive(modelInDb.get().getActive());
 			model.setNewUser(false);
-			System.out.println("employeeModel  is " + model);
-			System.out.println("Asset model is " + model.getAsset());
-			System.out.println("Salary model is " + model.getSalary());
-			return repository.update(model);
+			return repository.updateEmployeeDetails(model);
 		}
 
+		model.getSalary().setEmployee(model);
 		model.getSalary().setEmployee(model);
 		model.getAsset().forEach(assetModel -> assetModel.setEmployee(model));
 		model.setNewUser(true);
 		model.setActive(true);
-		return repository.save(model);
+		return repository.insertEmployeeInfo(model);
 	}
 }
 
